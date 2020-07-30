@@ -23,9 +23,9 @@ namespace CapaNegocio
             {
                 if (string.IsNullOrEmpty(_producto.Nombre) || string.IsNullOrWhiteSpace(_producto.Nombre))
                     throw new Exception("El nombre del producto no puede ser nulo");
-                if (_producto.Existencia > 0)
+                if (_producto.Existencia < (decimal)0.0)
                     throw new Exception("La existencia debe ser mayor a 0");
-                if (_producto.Precio >= 0)
+                if (_producto.Precio < 0)
                     throw new Exception("El precio debe ser mayor o igual a cero");
                 Respuesta = _repositorio.CrearProducto(_producto);
 
