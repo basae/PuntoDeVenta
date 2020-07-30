@@ -10,14 +10,14 @@ namespace CapaDatos
 {
     public class ConexionBD
     {
-        public SqlConnection _conexion;
+        protected SqlConnection _conexion;
         public ConexionBD()
         {
             _conexion = new SqlConnection();
             _conexion.ConnectionString = ConfigurationManager.AppSettings["CadenaConexion"];
         }
 
-        public bool EjecutarProcedimientoAlmacenado(string NombreProcedimiento, Dictionary<string,object> Parametros)
+        protected bool EjecutarProcedimientoAlmacenado(string NombreProcedimiento, Dictionary<string,object> Parametros)
         {
             bool resultado = false;
             SqlCommand cmd;
