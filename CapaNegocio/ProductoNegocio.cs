@@ -27,10 +27,26 @@ namespace CapaNegocio
                     throw new Exception("La existencia debe ser mayor a 0");
                 if (_producto.Precio < 0)
                     throw new Exception("El precio debe ser mayor o igual a cero");
-                Respuesta = _repositorio.CrearProducto(_producto);
+                Respuesta = _repositorio.CrearProducto(_producto);                
 
             }
             catch(Exception ex)
+            {
+                Respuesta.Error = true;
+                Respuesta.Mensaje = ex.Message;
+            }
+            return Respuesta;
+        }
+        public Respuesta<Producto> ConsultaProducto()
+        {
+            Respuesta<Producto> Respuesta = new Respuesta<Producto>();
+            try
+            {               
+                Respuesta = _repositorio.ConsultaProducto();
+                
+
+            }
+            catch (Exception ex)
             {
                 Respuesta.Error = true;
                 Respuesta.Mensaje = ex.Message;

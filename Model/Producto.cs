@@ -12,5 +12,6 @@ namespace Modelo
         public string Nombre { get; set; }
         public decimal? Precio { get; set; }
         public decimal? Existencia { get; set; }
+        public bool Estatus { get; set; }
     }
 }

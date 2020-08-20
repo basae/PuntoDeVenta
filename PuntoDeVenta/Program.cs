@@ -25,7 +25,22 @@ namespace PuntoDeVenta
             Console.WriteLine("Existencia del Producto");
             _producto.Existencia = Convert.ToDecimal(Console.ReadLine());
 
-            _repositorioProducto.CrearProducto(_producto);
+            var respuesta=_repositorioProducto.CrearProducto(_producto);
+
+            Console.WriteLine("{0}\t{1}\t{2:C}\t{3}\t{4}", respuesta.Resultado.Id, respuesta.Resultado.Nombre, respuesta.Resultado.Precio, respuesta.Resultado.Existencia, respuesta.Resultado.Estatus);
+
+            //var Resultado = _repositorioProducto.ConsultaProducto();
+            //if (Resultado.Error)
+            //    Console.WriteLine("Error:{0}", Resultado.Mensaje);
+            //else
+            //{
+            //    Console.WriteLine("ID\tNOMBRE\tPRECIO\tEXISTENCIA\tESTATUS");
+            //    foreach (var producto in Resultado.ListaResultado)
+            //    {
+            //        Console.WriteLine("{0}\t{1}\t{2:C}\t{3}\t{4}", producto.Id, producto.Nombre, producto.Precio, producto.Existencia, producto.Estatus);
+            //    }
+            //}
+            Console.ReadKey();
 
         }
     }
