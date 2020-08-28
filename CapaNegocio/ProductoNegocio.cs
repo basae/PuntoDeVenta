@@ -53,5 +53,57 @@ namespace CapaNegocio
             }
             return Respuesta;
         }
+        public Respuesta<Producto> ConsultaProducto(int id)
+        {
+            Respuesta<Producto> Respuesta = new Respuesta<Producto>();
+            try
+            {
+                Respuesta = _repositorio.ConsultaProducto(id);
+
+
+            }
+            catch (Exception ex)
+            {
+                Respuesta.Error = true;
+                Respuesta.Mensaje = ex.Message;
+            }
+            return Respuesta;
+        }
+        public Respuesta<Producto> ModificarProducto(Producto _producto)
+        {
+            Respuesta<Producto> Respuesta = new Respuesta<Producto>();
+            try
+            {
+                if (!_producto.Id.HasValue)
+                    throw new Exception("se requiere un id valido para la actualización");
+                Respuesta = _repositorio.ModificarProducto(_producto);
+
+            }
+            catch (Exception ex)
+            {
+                Respuesta.Error = true;
+                Respuesta.Mensaje = ex.Message;
+            }
+            return Respuesta;
+        }
+        public Respuesta<bool> Eliminar(int id)
+        {
+            Respuesta<bool> Respuesta = new Respuesta<bool>();
+            try
+            {
+                var RespuestaModificar = _repositorio.ModificarProducto(new Producto { Id = id, Estatus = false });
+                if (RespuestaModificar.Error)
+                    throw new Exception(RespuestaModificar.Mensaje);
+                Respuesta.Resultado = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta.Error = true;
+                Respuesta.Mensaje = ex.Message;
+            }
+            return Respuesta;
+        }
+
+
     }
 }

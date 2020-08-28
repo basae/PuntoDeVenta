@@ -15,20 +15,33 @@ namespace PuntoDeVenta
         static void Main(string[] args)
         {
             ProductoNegocio _repositorioProducto =new ProductoNegocio();
-            Producto _producto = new Producto();
-            Console.WriteLine("Nombre del Producto");
-            _producto.Nombre = Console.ReadLine();
+            //Producto _producto = new Producto();
 
-            Console.WriteLine("Precio del Producto");
-            _producto.Precio = Convert.ToDecimal(Console.ReadLine());
+            ////PRODUCTO NUEVO
+            //Console.WriteLine("Nombre del Producto");
+            //_producto.Nombre = Console.ReadLine();
 
-            Console.WriteLine("Existencia del Producto");
-            _producto.Existencia = Convert.ToDecimal(Console.ReadLine());
+            //Console.WriteLine("Precio del Producto");
+            //_producto.Precio = Convert.ToDecimal(Console.ReadLine());
 
-            var respuesta=_repositorioProducto.CrearProducto(_producto);
+            //Console.WriteLine("Existencia del Producto");
+            //_producto.Existencia = Convert.ToDecimal(Console.ReadLine());
+
+            //var respuesta=_repositorioProducto.CrearProducto(_producto);
+
+            //Console.WriteLine("{0}\t{1}\t{2:C}\t{3}\t{4}", respuesta.Resultado.Id, respuesta.Resultado.Nombre, respuesta.Resultado.Precio, respuesta.Resultado.Existencia, respuesta.Resultado.Estatus);
+
+
+            //ACTUALIZACION
+           var respuesta2 = _repositorioProducto.Eliminar(2);            
+
+            var respuesta = _repositorioProducto.ConsultaProducto(2);
 
             Console.WriteLine("{0}\t{1}\t{2:C}\t{3}\t{4}", respuesta.Resultado.Id, respuesta.Resultado.Nombre, respuesta.Resultado.Precio, respuesta.Resultado.Existencia, respuesta.Resultado.Estatus);
 
+
+
+            //CONSULTA DE PRODUCTO
             //var Resultado = _repositorioProducto.ConsultaProducto();
             //if (Resultado.Error)
             //    Console.WriteLine("Error:{0}", Resultado.Mensaje);

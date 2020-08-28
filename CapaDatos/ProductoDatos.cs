@@ -58,7 +58,7 @@ namespace CapaDatos
                 Respuesta.Mensaje = ex.Message;
             }
             return Respuesta;
-        }
+        }        
         public Respuesta<Producto> ConsultaProducto(int Id)
         {
             Respuesta<Producto> Respuesta = new Respuesta<Producto>();
@@ -78,6 +78,31 @@ namespace CapaDatos
                                                    Existencia = r.Field<decimal?>("Existencia"),
                                                    Estatus = r.Field<bool>("Estatus")
                                                }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Respuesta.Error = true;
+                Respuesta.Mensaje = ex.Message;
+            }
+            return Respuesta;
+        }
+        public Respuesta<Producto> ModificarProducto(Producto _producto)
+        {
+            Respuesta<Producto> Respuesta = new Respuesta<Producto>();
+            try
+            {
+                Dictionary<string, object> Parametros = new Dictionary<string, object>();
+                Parametros.Add("@Id", _producto.Id);
+                Parametros.Add("@Nombre", _producto.Nombre);
+                Parametros.Add("@Precio", _producto.Precio);
+                Parametros.Add("@Existencia", _producto.Existencia);
+                Parametros.Add("@Estatus", _producto.Estatus);
+
+                var dt = EjecutarProcedimientoAlmacenadoDataTable("sp_upd_Producto", Parametros);
+                if (dt.Rows.Count > 0)
+                {
+                    Respuesta = ConsultaProducto(Convert.ToInt32(dt.Rows[0][0]));
                 }
             }
             catch (Exception ex)
